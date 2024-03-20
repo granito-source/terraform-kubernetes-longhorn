@@ -1,6 +1,7 @@
 output "storage_class" {
-    depends_on = [helm_release.longhorn]
-    value      = "longhorn"
+    depends_on  = [helm_release.longhorn]
+    value       = "longhorn"
+    description = "provided default storage class"
 }
 
 locals {
