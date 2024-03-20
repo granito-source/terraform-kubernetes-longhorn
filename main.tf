@@ -18,7 +18,7 @@ resource "kubernetes_secret" "longhorn_auth" {
         name      = "longhorn-auth"
     }
     data = {
-        (terraform_data.username) = bcrypt(terraform_data.password)
+        (terraform_data.username.output) = bcrypt(terraform_data.password.output)
     }
     lifecycle {
         replace_triggered_by = [
