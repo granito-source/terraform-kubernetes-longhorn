@@ -46,7 +46,7 @@ resource "helm_release" "longhorn" {
           replicas: 1
         ingress:
           enabled: true
-          ingressClassName: ${var.ingress_class_name}
+          ingressClassName: ${var.ingress_class_name == null ? "null" : var.ingress_class_name}
           host: ${var.host}
           annotations:
             nginx.ingress.kubernetes.io/auth-type: basic
