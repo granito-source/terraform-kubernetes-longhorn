@@ -10,6 +10,6 @@ locals {
 
 output "url" {
     depends_on  = [helm_release.longhorn]
-    value       = "${local.protocol}://${var.host}/"
+    value       = local.configure_ingress ? "${local.protocol}://${var.host}/" : null
     description = "installed application URL"
 }

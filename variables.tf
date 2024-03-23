@@ -12,7 +12,8 @@ variable "longhorn_version" {
 
 variable "host" {
     type        = string
-    description = "FQDN for the ingress"
+    default     = null
+    description = "FQDN for the ingress, must be set to configure ingress"
 }
 
 variable "ingress_class_name" {
@@ -45,5 +46,6 @@ variable "username" {
 
 variable "password" {
     type        = string
-    description = "Longhorn UI password"
+    default     = null
+    description = "Longhorn UI password, must be set to configure ingress"
 }
