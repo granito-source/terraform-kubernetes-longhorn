@@ -10,13 +10,42 @@ variable "longhorn_version" {
     description = "Longhorn Helm chart version"
 }
 
+variable "backup_target" {
+    type        = string
+    default     = null
+    description = "S3 backup target"
+    validation {
+        condition     = var.backup_target == null ? true : can(regex("^s3://", var.backup_target))
+        error_message = "only S3 backup targets are supported"
+    }
+}
+
+variable "aws_endpoints" {
+    type        = string
+    default     = null
+    description = "S3 endpoints, must be defined if not using AWS"
+}
+
+variable "aws_access_key_id" {
+    type        = string
+    default     = null
+    description = "S3 access key ID"
+}
+
+variable "aws_secret_access_key" {
+    type        = string
+    sensitive   = true
+    default     = null
+    description = "S3 secret access key"
+}
+
 variable "host" {
     type        = string
     default     = null
     description = "FQDN for the ingress, must be set to configure ingress"
 }
 
-variable "ingress_class_name" {
+variable "ingress_class" {
     type        = string
     default     = null
     description = "ingress class to use"
@@ -46,6 +75,7 @@ variable "username" {
 
 variable "password" {
     type        = string
+    sensitive   = true
     default     = null
     description = "Longhorn UI password, must be set to configure ingress"
 }
