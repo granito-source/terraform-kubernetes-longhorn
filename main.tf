@@ -1,6 +1,6 @@
 locals {
     configure_backup  = var.backup_target != null && var.aws_access_key_id != null && var.aws_secret_access_key != null
-    configure_ingress = var.host != null && var.password != null
+    configure_ingress = var.host != null && nonsensitive(var.password != null)
 }
 
 resource "kubernetes_namespace_v1" "longhorn" {
